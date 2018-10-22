@@ -1,6 +1,7 @@
 package com.example.matheus.metrowaymatheus;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.location.Location;
 import android.os.Build;
@@ -44,6 +45,8 @@ import com.google.android.gms.maps.GoogleMap.InfoWindowAdapter;
 import com.example.matheus.metrowaymatheus.R;
 import com.example.matheus.metrowaymatheus.ReadFile;
 import com.example.matheus.metrowaymatheus.Estacao;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 
 public class TelaInicial extends AppCompatActivity
@@ -56,6 +59,9 @@ public class TelaInicial extends AppCompatActivity
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tela_inicial);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -65,8 +71,7 @@ public class TelaInicial extends AppCompatActivity
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                launchSecondActivity(view);
             }
         });
 
@@ -124,6 +129,13 @@ public class TelaInicial extends AppCompatActivity
     @Override
     public void onMyLocationClick(@NonNull Location location) {
         Toast.makeText(this, "Current location:\n" + location, Toast.LENGTH_LONG).show();
+    }
+
+    public void launchSecondActivity(View view) {
+        Intent intent = new Intent(this, EnviarDados.class);
+        startActivity(intent);
+
+
     }
 
     @Override

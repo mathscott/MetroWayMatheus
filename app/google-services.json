@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "901305060297",
+    "firebase_url": "https://metrowaymatheus.firebaseio.com",
+    "project_id": "metrowaymatheus",
+    "storage_bucket": "metrowaymatheus.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:901305060297:android:388cd1442f3dc217",
+        "android_client_info": {
+          "package_name": "com.example.matheus.metrowaymatheus"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "901305060297-cqmjkgchid9tkvc0mocmcmi0pg6ck1qr.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.matheus.metrowaymatheus",
+            "certificate_hash": "b270a2c26989cf26327605490cc1f6994ec80cc4"
+          }
+        },
+        {
+          "client_id": "901305060297-aghmjpb05p2abgtssa4qegr5tddn5f9t.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCqOkbkmwYe4BdzITflqdmqcoHKLJLyixo"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "901305060297-aghmjpb05p2abgtssa4qegr5tddn5f9t.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
