@@ -1,5 +1,6 @@
 package com.example.matheus.metrowaymatheus;
 
+import android.content.Context;
 import android.graphics.Color;
 import android.location.Location;
 import android.os.Build;
@@ -22,6 +23,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.support.v4.content.ContextCompat;
 import android.Manifest;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 
@@ -30,11 +33,13 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.Polyline;
 import com.google.android.gms.maps.model.PolylineOptions;
 import com.google.android.gms.maps.GoogleMap.OnMyLocationButtonClickListener;
 import com.google.android.gms.maps.GoogleMap.OnMyLocationClickListener;
+import com.google.android.gms.maps.GoogleMap.InfoWindowAdapter;
 
 import com.example.matheus.metrowaymatheus.R;
 import com.example.matheus.metrowaymatheus.ReadFile;
@@ -46,6 +51,8 @@ public class TelaInicial extends AppCompatActivity
 
     private GoogleMap map;
     private static final int LOCATION_PERMISSION_REQUEST_CODE = 1;
+    private Context context;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -167,18 +174,35 @@ public class TelaInicial extends AppCompatActivity
         desenhaLinha(reader.readAll("L12Safira.txt", this), Color.rgb(0, 1, 100));
 
 
+
+
     }
 
     public void marcaEstacao(String linha){
+//        ImageView imagem = (ImageView) findViewById(R.id.pic);
+//        String estacao1 = "linhaazul";
+//        int imageResource = getResources().getIdentifier("@drawable/"+estacao1, null, this.getPackageName());
+//        imagem.setImageResource(imageResource);
+        InfoWindowData info = new InfoWindowData();
         String[] estacoes = linha.split("\n");
         MarkerOptions markerOptions = new MarkerOptions();
-
         for(String estacao : estacoes){
             String[] componentes = estacao.split(",");
+            Log.i("estacao", estacao);
             if(componentes.length > 2){
                 LatLng latLng = new LatLng(Double.parseDouble(componentes[0]), Double.parseDouble(componentes[1]));
                 markerOptions.position(latLng);
-                map.addMarker(markerOptions);
+                markerOptions.title(componentes[2]);
+//                map.addMarker(markerOptions);
+
+                //info.setImage("linhaazul");
+
+                CustomInfoWindowGoogleMap customInfoWindow = new CustomInfoWindowGoogleMap(this);
+                map.setInfoWindowAdapter(customInfoWindow);
+
+                Marker m = map.addMarker(markerOptions);
+                m.setTag(info);
+                m.showInfoWindow();
             }
         }
     }
