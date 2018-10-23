@@ -89,13 +89,7 @@ public class TelaInicial extends AppCompatActivity
         mapFragment.getMapAsync((OnMapReadyCallback) this);
 
 
-        if (ContextCompat.checkSelfPermission(TelaInicial.this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            if (ActivityCompat.shouldShowRequestPermissionRationale(TelaInicial.this, Manifest.permission.ACCESS_FINE_LOCATION)) {
 
-            } else {
-                ActivityCompat.requestPermissions(TelaInicial.this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, LOCATION_PERMISSION_REQUEST_CODE);
-            }
-        }
     }
 
     @Override
@@ -107,9 +101,7 @@ public class TelaInicial extends AppCompatActivity
                 if (grantResults.length > 0
                         && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
 
-                    map.setMyLocationEnabled(true);
-                    map.setOnMyLocationButtonClickListener(this);
-                    map.setOnMyLocationClickListener(this);
+
 
 
 
@@ -186,6 +178,18 @@ public class TelaInicial extends AppCompatActivity
         desenhaLinha(reader.readAll("L12Safira.txt", this), Color.rgb(0, 1, 100));
 
 
+
+        if (ContextCompat.checkSelfPermission(TelaInicial.this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            if (ActivityCompat.shouldShowRequestPermissionRationale(TelaInicial.this, Manifest.permission.ACCESS_FINE_LOCATION)) {
+
+            } else {
+                ActivityCompat.requestPermissions(TelaInicial.this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, LOCATION_PERMISSION_REQUEST_CODE);
+            }
+        } else {
+            map.setMyLocationEnabled(true);
+            map.setOnMyLocationButtonClickListener(this);
+            map.setOnMyLocationClickListener(this);
+        }
 
 
     }

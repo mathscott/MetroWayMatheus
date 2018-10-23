@@ -31,7 +31,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".EnviarDados"></activity>
+        <activity android:name=".EnviarDados" />
+        <activity android:name=".TelaApos"></activity>
     </application>
 
 </manifest>
