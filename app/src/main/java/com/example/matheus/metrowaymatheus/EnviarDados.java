@@ -11,14 +11,19 @@ import android.widget.ImageButton;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.util.Date;
+
 public class EnviarDados extends AppCompatActivity {
+    FirebaseDatabase database = FirebaseDatabase.getInstance();
+    private DatabaseReference mDatabase;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_enviar_dados);
 
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
         final DatabaseReference myRef = database.getReference("message");
 
         Button botao = (Button) findViewById(R.id.button);
@@ -43,4 +48,6 @@ public class EnviarDados extends AppCompatActivity {
 
 
     }
+
+
 }
