@@ -9,6 +9,16 @@ public class Reclamacao {
     private Date data;
     private String descricao;
 
+    public Reclamacao() {
+    }
+
+    public Reclamacao(String estacao, String nome, Date data, String descricao) {
+        this.estacao = estacao;
+        this.nome = nome;
+        this.data = data;
+        this.descricao = descricao;
+    }
+
     public String getEstacao() {
         return estacao;
     }
