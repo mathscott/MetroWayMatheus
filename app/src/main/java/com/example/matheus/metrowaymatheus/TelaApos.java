@@ -24,8 +24,13 @@ public class TelaApos extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tela_apos);
         teste = (Spinner) findViewById(R.id.spinner);
-        ArrayAdapter adapter = ArrayAdapter.createFromResource(this, R.array.planets_array, R.layout.support_simple_spinner_dropdown_item);
-        teste.setAdapter(adapter);
+//        ArrayAdapter adapter = ArrayAdapter.createFromResource(this, R.array.planets_array, R.layout.support_simple_spinner_dropdown_item);
+//        teste.setAdapter(adapter);
+        String nomes [] = {"eu", "voce", "zubumafu"};
+        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, nomes);
+        ArrayAdapter<String> spinnerArrayAdapter = arrayAdapter;
+        spinnerArrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_item);
+        teste.setAdapter(spinnerArrayAdapter);
 
         Button submitButton = (Button) findViewById(R.id.submitButton);
 

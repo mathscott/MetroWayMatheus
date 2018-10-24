@@ -34,6 +34,7 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MapStyleOptions;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.Polyline;
@@ -157,6 +158,9 @@ public class TelaInicial extends AppCompatActivity
         Estacao uspLeste = new Estacao("USP Leste", -23.4855, -46.5005);
         Estacao tatuape = new Estacao("Tatuapé", -23.5411, -46.5755);
         map.moveCamera(CameraUpdateFactory.newLatLngZoom(uspLeste.getPosicao(), 11));
+        map.setMapStyle(
+                MapStyleOptions.loadRawResourceStyle(
+                        this, R.raw.mapstyle));
         //------------------------------------------------------------------------------------------
         marcaEstacao(reader.readAllLine("L1Coordenadas.txt", this));
         marcaEstacao(reader.readAllLine("L2Coordenadas.txt", this));
@@ -226,18 +230,17 @@ public class TelaInicial extends AppCompatActivity
     public void desenhaLinha(String pos, int color){
         String[] caminhos = pos.split("],");
         String atual = "", prox = "";
-        for (int i = 1; i < caminhos.length; i++){
-            atual = caminhos[i-1];
-            prox = caminhos[i];
+        PolylineOptions options = new PolylineOptions().width(14).color(color).geodesic(true);
+        for (int i = 0; i < caminhos.length; i++){
+            atual = caminhos[i];
+            //prox = caminhos[i];
             String[] atualXY = atual.split(",");
-            String[] proxXY = prox.split(",");
+            //String[] proxXY = prox.split(",");
             LatLng atualFinal = new LatLng(Double.parseDouble(atualXY[1].replace("]", "")),Double.parseDouble(atualXY[0]));
-            LatLng proxFinal = new LatLng(Double.parseDouble(proxXY[1].replace("]", "")),Double.parseDouble(proxXY[0]));
-            Polyline line = map.addPolyline(new PolylineOptions()
-                    .add(atualFinal, proxFinal)
-                    .width(14)
-                    .color(color));
+            //LatLng proxFinal = new LatLng(Double.parseDouble(proxXY[1].replace("]", "")),Double.parseDouble(proxXY[0]));
+            options.add(atualFinal);
         }
+        map.addPolyline(options);
     }
 
     @Override
