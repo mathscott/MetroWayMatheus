@@ -32,7 +32,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".EnviarDados" />
-        <activity android:name=".TelaApos"></activity>
+        <activity android:name=".TelaReclamacao"></activity>
     </application>
 
 </manifest>

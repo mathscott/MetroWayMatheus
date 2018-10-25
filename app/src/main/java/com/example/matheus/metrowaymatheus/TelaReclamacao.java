@@ -1,6 +1,5 @@
 package com.example.matheus.metrowaymatheus;
 
-import android.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -14,7 +13,7 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.Date;
 
-public class TelaApos extends AppCompatActivity {
+public class TelaReclamacao extends AppCompatActivity {
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     private DatabaseReference mDatabase;
     Spinner teste;
@@ -22,7 +21,7 @@ public class TelaApos extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_tela_apos);
+        setContentView(R.layout.activity_tela_reclamacao);
         teste = (Spinner) findViewById(R.id.spinner);
 //        ArrayAdapter adapter = ArrayAdapter.createFromResource(this, R.array.planets_array, R.layout.support_simple_spinner_dropdown_item);
 //        teste.setAdapter(adapter);

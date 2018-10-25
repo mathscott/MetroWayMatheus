@@ -49,6 +49,8 @@ import com.example.matheus.metrowaymatheus.Estacao;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.util.Arrays;
+
 //testedev
 public class TelaInicial extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, OnMapReadyCallback, OnMyLocationButtonClickListener, OnMyLocationClickListener {
@@ -201,14 +203,22 @@ public class TelaInicial extends AppCompatActivity
     public void criaVetorEstacoes () {
         ReadFile reader = new ReadFile();
         String linha = "";
-        linha = linha + (reader.readAllLine("L1Coordenadas.txt", this));
-        linha = linha +(reader.readAllLine("L2Coordenadas.txt", this));
-        linha = linha +(reader.readAllLine("L3Coordenadas.txt", this));
-        linha = linha +(reader.readAllLine("L4Coordenadas.txt", this));
-        linha = linha +(reader.readAllLine("L5Coordenadas.txt", this));
-        linha = linha +(reader.readAllLine("L7Coordenadas.txt", this));
-        linha = linha +(reader.readAllLine("L8Coordenadas(Incompleto).txt ", this));
+        linha = (reader.readAllLine("L1CoordenadasNome.txt", this));
+        linha = linha +(reader.readAllLine("L2CoordenadasNome.txt", this));
+        linha = linha +(reader.readAllLine("L3CoordenadasNome.txt", this));
+        linha = linha +(reader.readAllLine("L4CoordenadasNome.txt", this));
+        linha = linha +(reader.readAllLine("L5CoordenadasNome.txt", this));
+        linha = linha +(reader.readAllLine("L7CoordenadasNome.txt", this));
+        linha = linha +(reader.readAllLine("L8Coordenadas(Incompleto)Nome.txt ", this));
+
         estacoes = linha.split("\n");
+
+
+
+
+////        estacoes = componentes.split("\n");
+//        Log.d("estacoes", Arrays.toString(estacoes));
+
 
     }
 
