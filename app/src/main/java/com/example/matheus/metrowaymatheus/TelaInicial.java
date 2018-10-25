@@ -56,7 +56,7 @@ public class TelaInicial extends AppCompatActivity
     private GoogleMap map;
     private static final int LOCATION_PERMISSION_REQUEST_CODE = 1;
     private Context context;
-
+    static String estacoes [];
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -89,7 +89,7 @@ public class TelaInicial extends AppCompatActivity
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync((OnMapReadyCallback) this);
 
-
+        criaVetorEstacoes();
 
     }
 
@@ -195,6 +195,20 @@ public class TelaInicial extends AppCompatActivity
             map.setOnMyLocationClickListener(this);
         }
 
+
+    }
+
+    public void criaVetorEstacoes () {
+        ReadFile reader = new ReadFile();
+        String linha = "";
+        linha = linha + (reader.readAllLine("L1Coordenadas.txt", this));
+        linha = linha +(reader.readAllLine("L2Coordenadas.txt", this));
+        linha = linha +(reader.readAllLine("L3Coordenadas.txt", this));
+        linha = linha +(reader.readAllLine("L4Coordenadas.txt", this));
+        linha = linha +(reader.readAllLine("L5Coordenadas.txt", this));
+        linha = linha +(reader.readAllLine("L7Coordenadas.txt", this));
+        linha = linha +(reader.readAllLine("L8Coordenadas(Incompleto).txt ", this));
+        estacoes = linha.split("\n");
 
     }
 
