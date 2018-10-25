@@ -30,6 +30,7 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MapStyleOptions;
 import com.google.android.gms.maps.model.Marker;
@@ -49,15 +50,13 @@ public class TelaInicial extends AppCompatActivity
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
-
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tela_inicial);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        fab.setImageResource(R.drawable.baseline_add_location_black_18dp);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -217,6 +216,7 @@ public class TelaInicial extends AppCompatActivity
         InfoWindowData info = new InfoWindowData();
         String[] estacoes = linha.split("\n");
         MarkerOptions markerOptions = new MarkerOptions();
+
         for(String estacao : estacoes){
             String[] componentes = estacao.split(",");
             Log.i("estacao", estacao);
@@ -224,6 +224,7 @@ public class TelaInicial extends AppCompatActivity
                 LatLng latLng = new LatLng(Double.parseDouble(componentes[0]), Double.parseDouble(componentes[1]));
                 markerOptions.position(latLng);
                 markerOptions.title(componentes[2]);
+                markerOptions.icon(BitmapDescriptorFactory.fromResource(R.drawable.baseline_train_black_18dp));
 //                map.addMarker(markerOptions);
 
                 //info.setImage("linhaazul");
@@ -232,6 +233,7 @@ public class TelaInicial extends AppCompatActivity
                 map.setInfoWindowAdapter(customInfoWindow);
 
                 Marker m = map.addMarker(markerOptions);
+
                 m.setTag(info);
                 m.showInfoWindow();
             }
