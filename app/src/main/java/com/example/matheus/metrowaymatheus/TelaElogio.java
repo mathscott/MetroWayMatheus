@@ -7,16 +7,13 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
-import android.widget.TextView;
 
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-import org.w3c.dom.Text;
-
 import java.util.Date;
 
-public class TelaReclamacao extends AppCompatActivity {
+public class TelaElogio extends AppCompatActivity {
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     private DatabaseReference mDatabase;
     Spinner spinnerEstacoes;
@@ -24,26 +21,26 @@ public class TelaReclamacao extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_tela_reclamacao);
-        spinnerEstacoes = (Spinner) findViewById(R.id.spinner);
+        setContentView(R.layout.activity_tela_elogio);
+
+        spinnerEstacoes = (Spinner) findViewById(R.id.spinnerElogio);
         ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, TelaInicial.estacoes);
         ArrayAdapter<String> spinnerArrayAdapter = arrayAdapter;
         spinnerArrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_item);
         spinnerEstacoes.setAdapter(spinnerArrayAdapter);
 
-        Button submitButton = (Button) findViewById(R.id.submitButton);
-        TextInputEditText textInputName = (TextInputEditText) findViewById(R.id.textInputName);
-        TextInputEditText textInputDescricao = (TextInputEditText) findViewById(R.id.textInputDescricao);
+        Button submitButton = (Button) findViewById(R.id.submitButtonElogio);
+        TextInputEditText textInputName = (TextInputEditText) findViewById(R.id.textInputNameElogio);
+        TextInputEditText textInputDescricao = (TextInputEditText) findViewById(R.id.textInputDescricaoElogio);
         textInputName.getText().toString();
-
 
         submitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Date d1 = new Date();
-                TextInputEditText textInputName = (TextInputEditText) findViewById(R.id.textInputName);
-                TextInputEditText textInputDescricao = (TextInputEditText) findViewById(R.id.textInputDescricao);
-                writeNewReclamacao(spinnerEstacoes.getSelectedItem().toString(), textInputName.getText().toString(), d1, textInputDescricao.getText().toString());
+                TextInputEditText textInputName = (TextInputEditText) findViewById(R.id.textInputNameElogio);
+                TextInputEditText textInputDescricao = (TextInputEditText) findViewById(R.id.textInputDescricaoElogio);
+                escreverNovoElogio(spinnerEstacoes.getSelectedItem().toString(), textInputName.getText().toString(), d1, textInputDescricao.getText().toString());
                 textInputName.setText("");
                 textInputDescricao.setText("");
 
@@ -53,10 +50,10 @@ public class TelaReclamacao extends AppCompatActivity {
 
     }
 
-    private void writeNewReclamacao(String estacao, String nome, Date data, String descricao) {
-        Reclamacao reclamacao = new Reclamacao(estacao, nome, data, descricao);
+    private void escreverNovoElogio (String estacao, String nome, Date data, String descricao) {
+        Elogio elogio = new Elogio(estacao, nome, data, descricao);
         mDatabase = FirebaseDatabase.getInstance().getReference();
 
-        mDatabase.child("reclamacoes").push().setValue(reclamacao);
+        mDatabase.child("elogios").push().setValue(elogio);
     }
 }
