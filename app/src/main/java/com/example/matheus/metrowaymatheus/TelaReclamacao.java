@@ -1,6 +1,7 @@
 package com.example.matheus.metrowaymatheus;
 
 import android.support.design.widget.TextInputEditText;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -25,6 +26,9 @@ public class TelaReclamacao extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tela_reclamacao);
+        ActionBar actionbar = getSupportActionBar();
+        actionbar.setTitle("Tela de Reclamação");
+        actionbar.setDisplayHomeAsUpEnabled(true);
         spinnerEstacoes = (Spinner) findViewById(R.id.spinner);
         ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, TelaInicial.estacoes);
         ArrayAdapter<String> spinnerArrayAdapter = arrayAdapter;

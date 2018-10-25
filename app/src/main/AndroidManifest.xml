@@ -31,9 +31,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".EnviarDados" />
-        <activity android:name=".TelaReclamacao" />
-        <activity android:name=".TelaElogio"></activity>
+        <activity android:name=".TelaSelecao"
+            android:parentActivityName=".TelaInicial"/>
+        <activity android:name=".TelaReclamacao"
+            android:parentActivityName=".TelaSelecao"/>
+        <activity android:name=".TelaElogio"
+            android:parentActivityName=".TelaSelecao"></activity>
     </application>
 
 </manifest>

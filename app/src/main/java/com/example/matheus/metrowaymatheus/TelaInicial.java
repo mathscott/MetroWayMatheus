@@ -9,7 +9,6 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.RequiresApi;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
 import android.util.Log;
 import android.view.View;
@@ -24,8 +23,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.support.v4.content.ContextCompat;
 import android.Manifest;
-import android.widget.ImageView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 
@@ -37,19 +34,9 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MapStyleOptions;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
-import com.google.android.gms.maps.model.Polyline;
 import com.google.android.gms.maps.model.PolylineOptions;
 import com.google.android.gms.maps.GoogleMap.OnMyLocationButtonClickListener;
 import com.google.android.gms.maps.GoogleMap.OnMyLocationClickListener;
-import com.google.android.gms.maps.GoogleMap.InfoWindowAdapter;
-
-import com.example.matheus.metrowaymatheus.R;
-import com.example.matheus.metrowaymatheus.ReadFile;
-import com.example.matheus.metrowaymatheus.Estacao;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-
-import java.util.Arrays;
 
 //testedev
 public class TelaInicial extends AppCompatActivity
@@ -127,7 +114,7 @@ public class TelaInicial extends AppCompatActivity
     }
 
     public void launchSecondActivity(View view) {
-        Intent intent = new Intent(this, EnviarDados.class);
+        Intent intent = new Intent(this, TelaSelecao.class);
         startActivity(intent);
 
 
