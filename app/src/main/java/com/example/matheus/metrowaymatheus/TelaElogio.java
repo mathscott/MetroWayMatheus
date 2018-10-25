@@ -31,6 +31,7 @@ public class TelaElogio extends AppCompatActivity {
         ArrayAdapter<String> spinnerArrayAdapter = arrayAdapter;
         spinnerArrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_item);
         spinnerEstacoes.setAdapter(spinnerArrayAdapter);
+        spinnerEstacoes.setSelection(0);
 
         Button submitButton = (Button) findViewById(R.id.submitButtonElogio);
         TextInputEditText textInputName = (TextInputEditText) findViewById(R.id.textInputNameElogio);

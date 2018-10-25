@@ -199,7 +199,7 @@ public class TelaInicial extends AppCompatActivity
 
         estacoes = linha.split("\n");
 
-
+        estacoes[0] = "Selecione uma estação";
 
 
 ////        estacoes = componentes.split("\n");
