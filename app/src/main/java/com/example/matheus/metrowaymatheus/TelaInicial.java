@@ -306,8 +306,9 @@ public class TelaInicial extends AppCompatActivity
         } else if (id == R.id.nav_sobre) {
             Intent intent = new Intent(this, TelaSobre.class);
             startActivity(intent);
-        } else if (id == R.id.nav_slideshow) {
-
+        } else if (id == R.id.nav_telaselecaostatus) {
+            Intent intent = new Intent(this, TelaSelecaoEstacaoStatus.class);
+            startActivity(intent);
         } else if (id == R.id.nav_manage) {
 
         } else if (id == R.id.nav_share) {
