@@ -44,7 +44,8 @@
         <activity
             android:name=".TelaSobre"
             android:label="@string/title_activity_tela_sobre"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".TelaSelecaoEstacaoStatus"></activity>
     </application>
 
 </manifest>
