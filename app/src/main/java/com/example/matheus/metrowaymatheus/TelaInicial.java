@@ -300,7 +300,7 @@ public class TelaInicial extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_camera) {
+        if (id == R.id.nav_twitter) {
             Intent intent = new Intent(this, TwitterTimeline.class);
             startActivity(intent);
         } else if (id == R.id.nav_gallery) {
