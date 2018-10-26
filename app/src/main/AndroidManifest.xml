@@ -31,12 +31,16 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".TelaSelecao"
-            android:parentActivityName=".TelaInicial"/>
-        <activity android:name=".TelaReclamacao"
-            android:parentActivityName=".TelaSelecao"/>
-        <activity android:name=".TelaElogio"
-            android:parentActivityName=".TelaSelecao"></activity>
+        <activity
+            android:name=".TelaSelecao"
+            android:parentActivityName=".TelaInicial" />
+        <activity
+            android:name=".TelaReclamacao"
+            android:parentActivityName=".TelaSelecao" />
+        <activity
+            android:name=".TelaElogio"
+            android:parentActivityName=".TelaSelecao" />
+        <activity android:name=".TwitterTimeline"></activity>
     </application>
 
 </manifest>
