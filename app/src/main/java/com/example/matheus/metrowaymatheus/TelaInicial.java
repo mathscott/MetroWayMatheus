@@ -303,8 +303,9 @@ public class TelaInicial extends AppCompatActivity
         if (id == R.id.nav_twitter) {
             Intent intent = new Intent(this, TwitterTimeline.class);
             startActivity(intent);
-        } else if (id == R.id.nav_gallery) {
-
+        } else if (id == R.id.nav_sobre) {
+            Intent intent = new Intent(this, TelaSobre.class);
+            startActivity(intent);
         } else if (id == R.id.nav_slideshow) {
 
         } else if (id == R.id.nav_manage) {

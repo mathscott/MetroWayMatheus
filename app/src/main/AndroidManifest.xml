@@ -40,7 +40,11 @@
         <activity
             android:name=".TelaElogio"
             android:parentActivityName=".TelaSelecao" />
-        <activity android:name=".TwitterTimeline"></activity>
+        <activity android:name=".TwitterTimeline" />
+        <activity
+            android:name=".TelaSobre"
+            android:label="@string/title_activity_tela_sobre"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>
