@@ -20,6 +20,8 @@
         android:layout_gravity="start"
         android:fitsSystemWindows="true"
         app:headerLayout="@layout/nav_header_tela_inicial"
-        app:menu="@menu/activity_tela_inicial_drawer" />
+        app:menu="@menu/activity_tela_inicial_drawer" >
+
+    </android.support.design.widget.NavigationView>
 
 </android.support.v4.widget.DrawerLayout>

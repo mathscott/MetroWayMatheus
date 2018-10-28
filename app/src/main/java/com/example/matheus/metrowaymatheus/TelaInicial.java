@@ -26,6 +26,8 @@ import android.view.MenuItem;
 import android.support.v4.content.ContextCompat;
 import android.Manifest;
 import android.widget.EditText;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 import android.widget.Toast;
 
 
@@ -53,6 +55,10 @@ public class TelaInicial extends AppCompatActivity
     private static final int LOCATION_PERMISSION_REQUEST_CODE = 1;
     private Context context;
     static String estacoes [];
+    private ListView mDrawerList;
+
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,11 +79,19 @@ public class TelaInicial extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        //drawer.setDrawerListener(toggle);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
+
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+
+
+
+
+
 
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
@@ -86,6 +100,8 @@ public class TelaInicial extends AppCompatActivity
         criaVetorEstacoes();
 
     }
+
+
 
     @Override
     public void onRequestPermissionsResult(int requestCode,
@@ -310,12 +326,15 @@ public class TelaInicial extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_camera) {
-            // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
-
-        } else if (id == R.id.nav_slideshow) {
-
+        if (id == R.id.nav_twitter) {
+            Intent intent = new Intent(this, TwitterTimeline.class);
+            startActivity(intent);
+        } else if (id == R.id.nav_sobre) {
+            Intent intent = new Intent(this, TelaSobre.class);
+            startActivity(intent);
+        } else if (id == R.id.nav_telaselecaostatus) {
+            Intent intent = new Intent(this, TelaSelecaoEstacaoStatus.class);
+            startActivity(intent);
         } else if (id == R.id.nav_manage) {
 
         } else if (id == R.id.nav_share) {
