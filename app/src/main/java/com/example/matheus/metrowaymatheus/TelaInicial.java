@@ -3,6 +3,8 @@ package com.example.matheus.metrowaymatheus;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
+import android.location.Address;
+import android.location.Geocoder;
 import android.location.Location;
 import android.os.Build;
 import android.os.Bundle;
@@ -23,6 +25,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.support.v4.content.ContextCompat;
 import android.Manifest;
+import android.widget.EditText;
 import android.widget.Toast;
 
 
@@ -38,6 +41,9 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.PolylineOptions;
 import com.google.android.gms.maps.GoogleMap.OnMyLocationButtonClickListener;
 import com.google.android.gms.maps.GoogleMap.OnMyLocationClickListener;
+
+import java.io.IOException;
+import java.util.List;
 
 //testedev
 public class TelaInicial extends AppCompatActivity
@@ -206,6 +212,26 @@ public class TelaInicial extends AppCompatActivity
 //        Log.d("estacoes", Arrays.toString(estacoes));
 
 
+    }
+
+    public void onMapSearch(View view) {
+        EditText locationSearch = (EditText) findViewById(R.id.editText);
+        String location = locationSearch.getText().toString();
+        List<Address> addressList = null;
+
+        if (location != null || !location.equals("")) {
+            Geocoder geocoder = new Geocoder(this);
+            try {
+                addressList = geocoder.getFromLocationName(location, 1);
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            Address address = addressList.get(0);
+            LatLng latLng = new LatLng(address.getLatitude(), address.getLongitude());
+            map.addMarker(new MarkerOptions().position(latLng).title("Marker"));
+            map.animateCamera(CameraUpdateFactory.newLatLng(latLng));
+        }
     }
 
     public void marcaEstacao(String linha){
