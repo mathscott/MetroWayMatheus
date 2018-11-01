@@ -25,12 +25,15 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.support.v4.content.ContextCompat;
 import android.Manifest;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 
+import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -44,8 +47,16 @@ import com.google.android.gms.maps.model.PolylineOptions;
 import com.google.android.gms.maps.GoogleMap.OnMyLocationButtonClickListener;
 import com.google.android.gms.maps.GoogleMap.OnMyLocationClickListener;
 
+import org.w3c.dom.Text;
+
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
+
+import ir.mirrajabi.searchdialog.SimpleSearchDialogCompat;
+import ir.mirrajabi.searchdialog.core.BaseSearchDialogCompat;
+import ir.mirrajabi.searchdialog.core.SearchResultListener;
+import ir.mirrajabi.searchdialog.core.Searchable;
 
 //testedev
 public class TelaInicial extends AppCompatActivity
@@ -56,6 +67,7 @@ public class TelaInicial extends AppCompatActivity
     private Context context;
     static String estacoes [];
     private ListView mDrawerList;
+    ArrayList <Marker> marcadoresEstacoes = new ArrayList<Marker>();
 
 
 
@@ -179,6 +191,9 @@ public class TelaInicial extends AppCompatActivity
         marcaEstacao(reader.readAllLine("L5Coordenadas.txt", this));
         marcaEstacao(reader.readAllLine("L7Coordenadas.txt", this));
         marcaEstacao(reader.readAllLine("L8Coordenadas(Incompleto).txt ", this));
+
+        procuraEstacao();
+
         desenhaLinha(reader.readAll("L1Azul.txt", this), Color.BLUE);
         desenhaLinha(reader.readAll("L2Verde.txt", this), Color.GREEN);
         desenhaLinha(reader.readAll("L3Vermelha.txt", this), Color.RED);
@@ -208,6 +223,43 @@ public class TelaInicial extends AppCompatActivity
 
     }
 
+    public void procuraEstacao() {
+        //EditText locationSearch = (EditText) findViewById(R.id.editText);
+        Button searchButton = (Button) findViewById(R.id.search_button);
+        searchButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new SimpleSearchDialogCompat(TelaInicial.this, "Estações",
+                        "Procure sua estação", null, createSampleData(marcadoresEstacoes),
+                        new SearchResultListener<Searchable>() {
+                            @Override
+                            public void onSelected(BaseSearchDialogCompat dialog,
+                                                   Searchable item, int position) {
+                                for (int i = 0; i < marcadoresEstacoes.size(); i ++) {
+                                    if (item.getTitle().equals(marcadoresEstacoes.get(i).getTitle())) {
+                                        marcadoresEstacoes.get(i).showInfoWindow();
+                                        CameraUpdate yourLocation = CameraUpdateFactory.newLatLngZoom(marcadoresEstacoes.get(i).getPosition(), 11.0f);
+                                        map.animateCamera(yourLocation);
+
+                                    }
+                                }
+                                dialog.dismiss();
+                            }
+                        }).show();
+            }
+        });
+
+    }
+
+    private ArrayList<SampleSearchModel> createSampleData(ArrayList<Marker> marcadores) {
+        ArrayList<SampleSearchModel> items = new ArrayList<>();
+        for (int i = 0; i < marcadores.size(); i ++) {
+            items.add(new SampleSearchModel(marcadores.get(i).getTitle()));
+        }
+        return items;
+    }
+
+
     public void criaVetorEstacoes () {
         ReadFile reader = new ReadFile();
         String linha = "";
@@ -230,25 +282,7 @@ public class TelaInicial extends AppCompatActivity
 
     }
 
-    public void onMapSearch(View view) {
-        EditText locationSearch = (EditText) findViewById(R.id.editText);
-        String location = locationSearch.getText().toString();
-        List<Address> addressList = null;
 
-        if (location != null || !location.equals("")) {
-            Geocoder geocoder = new Geocoder(this);
-            try {
-                addressList = geocoder.getFromLocationName(location, 1);
-
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            Address address = addressList.get(0);
-            LatLng latLng = new LatLng(address.getLatitude(), address.getLongitude());
-            map.addMarker(new MarkerOptions().position(latLng).title("Marker"));
-            map.animateCamera(CameraUpdateFactory.newLatLng(latLng));
-        }
-    }
 
     public void marcaEstacao(String linha){
 //        ImageView imagem = (ImageView) findViewById(R.id.pic);
@@ -258,7 +292,6 @@ public class TelaInicial extends AppCompatActivity
         InfoWindowData info = new InfoWindowData();
         String[] estacoes = linha.split("\n");
         MarkerOptions markerOptions = new MarkerOptions();
-
         for(String estacao : estacoes){
             String[] componentes = estacao.split(",");
             Log.i("estacao", estacao);
@@ -278,8 +311,15 @@ public class TelaInicial extends AppCompatActivity
 
                 m.setTag(info);
                 m.showInfoWindow();
+                marcadoresEstacoes.add(m);
             }
         }
+
+//        for (int i = 0; i < marcadoresEstacoes.size(); i ++) {
+//            Log.d("teste", marcadoresEstacoes.get(i).getTitle()+ i);
+//        }
+
+
     }
 
     public void desenhaLinha(String pos, int color){
