@@ -27,7 +27,7 @@ public class CustomInfoWindowGoogleMap implements GoogleMap.InfoWindowAdapter {
         View view = ((Activity)context).getLayoutInflater()
                 .inflate(R.layout.info_window, null);
 
-            TextView name_tv = view.findViewById(R.id.textView2);
+//            TextView name_tv = view.findViewById(R.id.textView2);
 //        TextView details_tv = view.findViewById(R.id.details);
 //        ImageView img = view.findViewById(R.id.pic);
 
@@ -35,7 +35,7 @@ public class CustomInfoWindowGoogleMap implements GoogleMap.InfoWindowAdapter {
 //        TextView food_tv = view.findViewById(R.id.food);
 //        TextView transport_tv = view.findViewById(R.id.transport);
 
-        name_tv.setText(marker.getTitle());
+//        name_tv.setText(marker.getTitle());
 //        details_tv.setText(marker.getSnippet());
 
         InfoWindowData infoWindowData = (InfoWindowData) marker.getTag();

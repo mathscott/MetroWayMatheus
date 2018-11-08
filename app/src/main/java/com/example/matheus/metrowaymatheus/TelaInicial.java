@@ -1,8 +1,10 @@
 package com.example.matheus.metrowaymatheus;
 
+import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
@@ -28,6 +30,8 @@ import android.Manifest;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ArrayAdapter;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -51,6 +55,7 @@ import org.w3c.dom.Text;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Hashtable;
 import java.util.List;
 
 import ir.mirrajabi.searchdialog.SimpleSearchDialogCompat;
@@ -60,7 +65,7 @@ import ir.mirrajabi.searchdialog.core.Searchable;
 
 //testedev
 public class TelaInicial extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener, OnMapReadyCallback, OnMyLocationButtonClickListener, OnMyLocationClickListener {
+        implements NavigationView.OnNavigationItemSelectedListener, OnMapReadyCallback, OnMyLocationButtonClickListener, OnMyLocationClickListener, GoogleMap.OnInfoWindowClickListener, GoogleMap.OnMarkerClickListener{
 
     private GoogleMap map;
     private static final int LOCATION_PERMISSION_REQUEST_CODE = 1;
@@ -68,7 +73,9 @@ public class TelaInicial extends AppCompatActivity
     static String estacoes [];
     private ListView mDrawerList;
     ArrayList <Marker> marcadoresEstacoes = new ArrayList<Marker>();
-
+    ArrayList <String> linha1 = new ArrayList<String>();
+    public Hashtable<String, Integer> hashtable = new Hashtable<String, Integer>();
+    Dialog myDialog;
 
 
 
@@ -110,8 +117,10 @@ public class TelaInicial extends AppCompatActivity
         mapFragment.getMapAsync((OnMapReadyCallback) this);
 
         criaVetorEstacoes();
-
+        myDialog = new Dialog(this);
     }
+
+
 
 
 
@@ -179,18 +188,19 @@ public class TelaInicial extends AppCompatActivity
         ReadFile reader = new ReadFile();
         Estacao uspLeste = new Estacao("USP Leste", -23.4855, -46.5005);
         Estacao tatuape = new Estacao("Tatuapé", -23.5411, -46.5755);
-        map.moveCamera(CameraUpdateFactory.newLatLngZoom(uspLeste.getPosicao(), 11));
+        Estacao se = new Estacao ("Sé", -23.5500992,-46.633321);
+        map.moveCamera(CameraUpdateFactory.newLatLngZoom(se.getPosicao(), 13));
         map.setMapStyle(
                 MapStyleOptions.loadRawResourceStyle(
                         this, R.raw.mapstyle));
         //------------------------------------------------------------------------------------------
-        marcaEstacao(reader.readAllLine("L1Coordenadas.txt", this));
-        marcaEstacao(reader.readAllLine("L2Coordenadas.txt", this));
-        marcaEstacao(reader.readAllLine("L3Coordenadas.txt", this));
-        marcaEstacao(reader.readAllLine("L4Coordenadas.txt", this));
-        marcaEstacao(reader.readAllLine("L5Coordenadas.txt", this));
-        marcaEstacao(reader.readAllLine("L7Coordenadas.txt", this));
-        marcaEstacao(reader.readAllLine("L8Coordenadas(Incompleto).txt ", this));
+        marcaEstacao(reader.readAllLine("L1Coordenadas.txt", this), 255);
+        marcaEstacao(reader.readAllLine("L2Coordenadas.txt", this), 2);
+        marcaEstacao(reader.readAllLine("L3Coordenadas.txt", this), 16711680);
+        marcaEstacao(reader.readAllLine("L4Coordenadas.txt", this), 4);
+        marcaEstacao(reader.readAllLine("L5Coordenadas.txt", this), 5);
+        marcaEstacao(reader.readAllLine("L7Coordenadas.txt", this), 7);
+        marcaEstacao(reader.readAllLine("L8Coordenadas(Incompleto).txt ", this), 8);
 
         procuraEstacao();
 
@@ -284,15 +294,18 @@ public class TelaInicial extends AppCompatActivity
 
 
 
-    public void marcaEstacao(String linha){
+    public void marcaEstacao(String linha, int numeroEstacao){
 //        ImageView imagem = (ImageView) findViewById(R.id.pic);
 //        String estacao1 = "linhaazul";
 //        int imageResource = getResources().getIdentifier("@drawable/"+estacao1, null, this.getPackageName());
 //        imagem.setImageResource(imageResource);
         InfoWindowData info = new InfoWindowData();
+
+//        ImageView imagem = findViewById(R.id.imageView4);
         String[] estacoes = linha.split("\n");
         MarkerOptions markerOptions = new MarkerOptions();
         for(String estacao : estacoes){
+            hashtable.put(estacao, numeroEstacao);
             String[] componentes = estacao.split(",");
             Log.i("estacao", estacao);
             if(componentes.length > 2){
@@ -302,15 +315,17 @@ public class TelaInicial extends AppCompatActivity
                 markerOptions.icon(BitmapDescriptorFactory.fromResource(R.drawable.baseline_train_black_18dp));
 //                map.addMarker(markerOptions);
 
-                //info.setImage("linhaazul");
-
+                info.setImage("linhaazul");
+                info.setHotel("1");
                 CustomInfoWindowGoogleMap customInfoWindow = new CustomInfoWindowGoogleMap(this);
                 map.setInfoWindowAdapter(customInfoWindow);
 
                 Marker m = map.addMarker(markerOptions);
 
+                  //imagem.setImageResource(R.drawable.turtle);
                 m.setTag(info);
-                m.showInfoWindow();
+                map.setOnMarkerClickListener(this);
+                map.setOnInfoWindowClickListener(this);
                 marcadoresEstacoes.add(m);
             }
         }
@@ -320,6 +335,24 @@ public class TelaInicial extends AppCompatActivity
 //        }
 
 
+    }
+    public boolean onMarkerClick (Marker marker) {
+        map.moveCamera(CameraUpdateFactory.newLatLng(marker.getPosition()));
+        String nome = marker.getTitle().toString();
+        openDialog(nome);
+
+        return true;
+    }
+
+    public void openDialog (String nome) {
+        CaixaDialogo exampleDialog = new CaixaDialogo();
+        exampleDialog.setNome(nome);
+        exampleDialog.show(getSupportFragmentManager(), "example dialog");
+    }
+
+    public void abrirTelaEstacao (View view) {
+        Intent intent = new Intent(this, TelaEstacao.class);
+        startActivity(intent);
     }
 
     public void desenhaLinha(String pos, int color){
@@ -389,5 +422,9 @@ public class TelaInicial extends AppCompatActivity
     }
 
 
-
+    @Override
+    public void onInfoWindowClick(Marker marker) {
+        Intent intent = new Intent(TelaInicial.this, TelaEstacao.class);
+        startActivity(intent);
+    }
 }

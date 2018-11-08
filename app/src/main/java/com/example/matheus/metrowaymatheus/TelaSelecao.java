@@ -1,12 +1,15 @@
 package com.example.matheus.metrowaymatheus;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.RadioButton;
+import android.widget.TextView;
 import android.widget.Toolbar;
 
 import com.google.firebase.database.DatabaseReference;
@@ -16,7 +19,7 @@ public class TelaSelecao extends AppCompatActivity {
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     private DatabaseReference mDatabase;
 
-
+    Dialog myDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +36,7 @@ public class TelaSelecao extends AppCompatActivity {
         nextButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                openDialog();
                 if (rbReclamacao.isChecked()) {
                     Intent intent = new Intent(TelaSelecao.this, TelaReclamacao.class);
                     startActivity(intent);
@@ -50,6 +54,8 @@ public class TelaSelecao extends AppCompatActivity {
             }
         });
 
+
+
 //        botao.setOnClickListener(new View.OnClickListener() {
 //            @Override
 //            public void onClick(View v) {
@@ -57,8 +63,13 @@ public class TelaSelecao extends AppCompatActivity {
 //                myRef.child("teste").setValue(valorTexto);
 //            }
 //        });
+        myDialog = new Dialog(this);
 
+    }
 
+    public void openDialog () {
+        CaixaDialogo exampleDialog = new CaixaDialogo();
+        exampleDialog.show(getSupportFragmentManager(), "example dialog");
     }
 
 
