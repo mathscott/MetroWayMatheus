@@ -55,6 +55,7 @@ import org.w3c.dom.Text;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Hashtable;
 import java.util.List;
 
@@ -74,7 +75,12 @@ public class TelaInicial extends AppCompatActivity
     private ListView mDrawerList;
     ArrayList <Marker> marcadoresEstacoes = new ArrayList<Marker>();
     ArrayList <String> linha1 = new ArrayList<String>();
-    public Hashtable<String, Integer> hashtable = new Hashtable<String, Integer>();
+    public  static HashMap <String, Integer> hashtable = new HashMap<String, Integer>();
+
+    public static HashMap<String, Integer> getHashtable() {
+        return hashtable;
+    }
+
     Dialog myDialog;
 
 
@@ -194,13 +200,13 @@ public class TelaInicial extends AppCompatActivity
                 MapStyleOptions.loadRawResourceStyle(
                         this, R.raw.mapstyle));
         //------------------------------------------------------------------------------------------
-        marcaEstacao(reader.readAllLine("L1Coordenadas.txt", this), 255);
-        marcaEstacao(reader.readAllLine("L2Coordenadas.txt", this), 2);
-        marcaEstacao(reader.readAllLine("L3Coordenadas.txt", this), 16711680);
-        marcaEstacao(reader.readAllLine("L4Coordenadas.txt", this), 4);
-        marcaEstacao(reader.readAllLine("L5Coordenadas.txt", this), 5);
-        marcaEstacao(reader.readAllLine("L7Coordenadas.txt", this), 7);
-        marcaEstacao(reader.readAllLine("L8Coordenadas(Incompleto).txt ", this), 8);
+        marcaEstacao(reader.readAllLine("L1Coordenadas.txt", this), Color.BLUE);
+        marcaEstacao(reader.readAllLine("L2Coordenadas.txt", this), Color.GREEN);
+        marcaEstacao(reader.readAllLine("L3Coordenadas.txt", this), Color.RED);
+        marcaEstacao(reader.readAllLine("L4Coordenadas.txt", this), Color.YELLOW);
+        marcaEstacao(reader.readAllLine("L5Coordenadas.txt", this), Color.parseColor("purple"));
+        marcaEstacao(reader.readAllLine("L7Coordenadas.txt", this), Color.rgb(192, 1, 135));
+        marcaEstacao(reader.readAllLine("L8Coordenadas(Incompleto).txt ", this), Color.rgb(192, 1, 135));
 
         procuraEstacao();
 
@@ -294,29 +300,26 @@ public class TelaInicial extends AppCompatActivity
 
 
 
-    public void marcaEstacao(String linha, int numeroEstacao){
+    public void marcaEstacao(String linha, int corEstacao){
 //        ImageView imagem = (ImageView) findViewById(R.id.pic);
 //        String estacao1 = "linhaazul";
 //        int imageResource = getResources().getIdentifier("@drawable/"+estacao1, null, this.getPackageName());
 //        imagem.setImageResource(imageResource);
         InfoWindowData info = new InfoWindowData();
-
 //        ImageView imagem = findViewById(R.id.imageView4);
-        String[] estacoes = linha.split("\n");
+        String[] estacoesECoordenadas = linha.split("\n");
         MarkerOptions markerOptions = new MarkerOptions();
-        for(String estacao : estacoes){
-            hashtable.put(estacao, numeroEstacao);
-            String[] componentes = estacao.split(",");
-            Log.i("estacao", estacao);
-            if(componentes.length > 2){
-                LatLng latLng = new LatLng(Double.parseDouble(componentes[0]), Double.parseDouble(componentes[1]));
+        for(String estacaoECoordenada : estacoesECoordenadas){
+
+            String[] estacaoCoordenadaSeparados = estacaoECoordenada.split(",");
+            if(estacaoCoordenadaSeparados.length > 2){
+                LatLng latLng = new LatLng(Double.parseDouble(estacaoCoordenadaSeparados[0]), Double.parseDouble(estacaoCoordenadaSeparados[1]));
                 markerOptions.position(latLng);
-                markerOptions.title(componentes[2]);
+                markerOptions.title(estacaoCoordenadaSeparados[2]);
+                hashtable.put(estacaoCoordenadaSeparados[2], corEstacao);
                 markerOptions.icon(BitmapDescriptorFactory.fromResource(R.drawable.baseline_train_black_18dp));
 //                map.addMarker(markerOptions);
 
-                info.setImage("linhaazul");
-                info.setHotel("1");
                 CustomInfoWindowGoogleMap customInfoWindow = new CustomInfoWindowGoogleMap(this);
                 map.setInfoWindowAdapter(customInfoWindow);
 

@@ -4,6 +4,16 @@ import com.google.android.gms.maps.model.LatLng;
 
 public class Estacao {
 
+    private String linha;
+
+    public String getLinha() {
+        return linha;
+    }
+
+    public void setLinha(String linha) {
+        this.linha = linha;
+    }
+
     public String getNome() {
         return nome;
     }
