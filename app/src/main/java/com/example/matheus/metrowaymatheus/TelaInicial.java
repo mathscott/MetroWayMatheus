@@ -66,7 +66,7 @@ import ir.mirrajabi.searchdialog.core.Searchable;
 
 //testedev
 public class TelaInicial extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener, OnMapReadyCallback, OnMyLocationButtonClickListener, OnMyLocationClickListener, GoogleMap.OnInfoWindowClickListener, GoogleMap.OnMarkerClickListener{
+        implements NavigationView.OnNavigationItemSelectedListener, OnMapReadyCallback, OnMyLocationButtonClickListener, OnMyLocationClickListener,  GoogleMap.OnMarkerClickListener{
 
     private GoogleMap map;
     private static final int LOCATION_PERMISSION_REQUEST_CODE = 1;
@@ -337,18 +337,18 @@ public class TelaInicial extends AppCompatActivity
     public boolean onMarkerClick (Marker marker) {
         map.moveCamera(CameraUpdateFactory.newLatLng(marker.getPosition()));
         String nome = marker.getTitle().toString();
-        openDialog(nome);
+        openDialog(nome, marker);
 
         return true;
     }
 
-    public void openDialog (String nome) {
+    public void openDialog (String nome, Marker marker) {
         CaixaDialogo exampleDialog = new CaixaDialogo();
         exampleDialog.setNome(nome);
         exampleDialog.show(getSupportFragmentManager(), "example dialog");
     }
 
-    public void abrirTelaEstacao (View view) {
+    public void abrirTelaEstacao (View view, Marker marker) {
         Intent intent = new Intent(this, TelaEstacao.class);
         startActivity(intent);
     }
@@ -420,9 +420,4 @@ public class TelaInicial extends AppCompatActivity
     }
 
 
-    @Override
-    public void onInfoWindowClick(Marker marker) {
-        Intent intent = new Intent(TelaInicial.this, TelaEstacao.class);
-        startActivity(intent);
-    }
 }
