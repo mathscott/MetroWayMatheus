@@ -93,13 +93,8 @@ public class TelaInicial extends AppCompatActivity
         setSupportActionBar(toolbar);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setImageResource(R.drawable.baseline_add_location_black_18dp);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                launchSecondActivity(view);
-            }
-        });
+        fab.setImageResource(R.drawable.baseline_search_black_18dp);
+        procuraEstacao(fab);
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -208,7 +203,7 @@ public class TelaInicial extends AppCompatActivity
         marcaEstacao(reader.readAllLine("L7Coordenadas.txt", this), Color.rgb(192, 1, 135));
         marcaEstacao(reader.readAllLine("L8Coordenadas(Incompleto).txt ", this), Color.rgb(192, 1, 135));
 
-        procuraEstacao();
+        //procuraEstacao();
 
         desenhaLinha(reader.readAll("L1Azul.txt", this), Color.BLUE);
         desenhaLinha(reader.readAll("L2Verde.txt", this), Color.GREEN);
@@ -239,10 +234,10 @@ public class TelaInicial extends AppCompatActivity
 
     }
 
-    public void procuraEstacao() {
+    public void procuraEstacao(FloatingActionButton botaoPesquisa) {
         //EditText locationSearch = (EditText) findViewById(R.id.editText);
-        Button searchButton = (Button) findViewById(R.id.search_button);
-        searchButton.setOnClickListener(new View.OnClickListener() {
+
+        botaoPesquisa.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 new SimpleSearchDialogCompat(TelaInicial.this, "Estações",
