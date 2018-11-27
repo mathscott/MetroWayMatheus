@@ -333,8 +333,13 @@ public class TelaInicial extends AppCompatActivity
         exampleDialog.show(getSupportFragmentManager(), "example dialog");
     }
 
-    public void abrirTelaEstacao (View view) {
+    public void abrirTelaReport (View view) {
         Intent intent = new Intent(this, TelaReport.class);
+        startActivity(intent);
+    }
+
+    public void abrirTelaShow (View view) {
+        Intent intent = new Intent(this, TelaShow.class);
         startActivity(intent);
     }
 
