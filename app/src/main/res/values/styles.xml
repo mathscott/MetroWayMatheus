@@ -18,4 +18,12 @@
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
+    <declare-styleable name="CheckableImageButton">
+        <attr name="is_checked" format="boolean" />
+
+        <attr name="personality">
+            <enum name="radio" value="0" />
+            <enum name="check" value="1" />
+        </attr>
+    </declare-styleable>
 </resources>

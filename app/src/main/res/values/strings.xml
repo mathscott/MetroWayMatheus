@@ -18,4 +18,5 @@
         <item>Neptune</item>
     </string-array>
     <string name="title_activity_tela_sobre">TelaSobre</string>
+    <string name="title_activity_tela_show">TelaShow</string>
 </resources>

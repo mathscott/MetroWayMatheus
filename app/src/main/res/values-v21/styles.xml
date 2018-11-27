@@ -5,4 +5,13 @@
         <item name="windowNoTitle">true</item>
         <item name="android:statusBarColor">@android:color/transparent</item>
     </style>
+
+    <declare-styleable name="CheckableImageButton">
+        <attr name="is_checked" format="boolean" />
+
+        <attr name="personality">
+            <enum name="radio" value="0" />
+            <enum name="check" value="1" />
+        </attr>
+    </declare-styleable>
 </resources>

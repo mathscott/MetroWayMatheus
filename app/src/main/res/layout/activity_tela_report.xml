@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/relativeLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".TelaReport"
+    tools:layout_editor_absoluteY="25dp">
+
+
+    <com.example.matheus.metrowaymatheus.CheckableImageButton
+        android:id="@+id/botaoLentidao"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="6dp"
+        android:layout_marginEnd="7dp"
+        android:layout_marginBottom="15dp"
+        android:adjustViewBounds="true"
+        android:scaleType="fitXY"
+        android:src="@drawable/slow"
+        android:background="@drawable/colorir_botoes"
+        app:layout_constraintBottom_toTopOf="@+id/botaoAssedio"
+        app:layout_constraintEnd_toStartOf="@+id/botaoArCondicionado"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.example.matheus.metrowaymatheus.CheckableImageButton
+        android:id="@+id/botaoAssedio"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="7dp"
+        android:layout_marginBottom="326dp"
+        android:adjustViewBounds="true"
+        android:scaleType="fitXY"
+        android:src="@drawable/sexual_harassment"
+        android:background="@drawable/colorir_botoes"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/botaoLimpeza"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/botaoLentidao" />
+
+    <com.example.matheus.metrowaymatheus.CheckableImageButton
+        android:id="@+id/botaoLimpeza"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="188dp"
+        android:adjustViewBounds="true"
+        android:scaleType="fitXY"
+        android:src="@drawable/clean"
+        android:background="@drawable/colorir_botoes"
+        app:layout_constraintBottom_toTopOf="@+id/botaoOk"
+        app:layout_constraintEnd_toStartOf="@+id/botaoSeguranca"
+        app:layout_constraintStart_toEndOf="@+id/botaoAssedio"
+        app:layout_constraintTop_toBottomOf="@+id/botaoArCondicionado" />
+
+    <com.example.matheus.metrowaymatheus.CheckableImageButton
+        android:id="@+id/botaoSeguranca"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="326dp"
+        android:adjustViewBounds="true"
+        android:scaleType="fitXY"
+        android:src="@drawable/shield"
+        android:background="@drawable/colorir_botoes"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/botaoLimpeza"
+        app:layout_constraintTop_toBottomOf="@+id/botaoLotacao" />
+
+    <com.example.matheus.metrowaymatheus.CheckableImageButton
+        android:id="@+id/botaoArCondicionado"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="6dp"
+        android:layout_marginEnd="2dp"
+        android:layout_marginBottom="15dp"
+        android:adjustViewBounds="true"
+        android:background="@drawable/colorir_botoes"
+        android:scaleType="fitXY"
+        android:src="@drawable/ac"
+        app:layout_constraintBottom_toTopOf="@+id/botaoLimpeza"
+        app:layout_constraintEnd_toStartOf="@+id/botaoLotacao"
+        app:layout_constraintStart_toEndOf="@+id/botaoLentidao"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:src="@drawable/ac" />
+
+    <com.example.matheus.metrowaymatheus.CheckableImageButton
+        android:id="@+id/botaoLotacao"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="6dp"
+        android:layout_marginEnd="23dp"
+        android:layout_marginBottom="15dp"
+        android:adjustViewBounds="true"
+        android:scaleType="fitXY"
+        android:src="@drawable/group"
+        android:background="@drawable/colorir_botoes"
+        app:layout_constraintBottom_toTopOf="@+id/botaoSeguranca"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/botaoArCondicionado"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/botaoOk"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="133dp"
+        android:layout_marginBottom="90dp"
+        android:text="ok"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/botaoLimpeza" />
+
+
+
+
+</android.support.constraint.ConstraintLayout>

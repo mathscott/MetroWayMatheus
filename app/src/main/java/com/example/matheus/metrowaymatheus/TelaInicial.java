@@ -4,9 +4,6 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
-import android.location.Address;
-import android.location.Geocoder;
 import android.location.Location;
 import android.os.Build;
 import android.os.Bundle;
@@ -14,7 +11,6 @@ import android.support.annotation.NonNull;
 import android.support.annotation.RequiresApi;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.ActivityCompat;
-import android.util.Log;
 import android.view.View;
 import android.content.pm.PackageManager;
 import android.support.design.widget.NavigationView;
@@ -27,13 +23,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.support.v4.content.ContextCompat;
 import android.Manifest;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ArrayAdapter;
-import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 
@@ -51,13 +41,8 @@ import com.google.android.gms.maps.model.PolylineOptions;
 import com.google.android.gms.maps.GoogleMap.OnMyLocationButtonClickListener;
 import com.google.android.gms.maps.GoogleMap.OnMyLocationClickListener;
 
-import org.w3c.dom.Text;
-
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Hashtable;
-import java.util.List;
 
 import ir.mirrajabi.searchdialog.SimpleSearchDialogCompat;
 import ir.mirrajabi.searchdialog.core.BaseSearchDialogCompat;
@@ -323,7 +308,7 @@ public class TelaInicial extends AppCompatActivity
                   //imagem.setImageResource(R.drawable.turtle);
                 m.setTag(info);
                 map.setOnMarkerClickListener(this);
-                map.setOnInfoWindowClickListener(this);
+                //map.setOnInfoWindowClickListener(this);
                 marcadoresEstacoes.add(m);
             }
         }
@@ -348,8 +333,8 @@ public class TelaInicial extends AppCompatActivity
         exampleDialog.show(getSupportFragmentManager(), "example dialog");
     }
 
-    public void abrirTelaEstacao (View view, Marker marker) {
-        Intent intent = new Intent(this, TelaEstacao.class);
+    public void abrirTelaEstacao (View view) {
+        Intent intent = new Intent(this, TelaReport.class);
         startActivity(intent);
     }
 

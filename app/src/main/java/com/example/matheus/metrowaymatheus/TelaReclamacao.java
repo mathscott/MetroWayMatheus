@@ -8,12 +8,9 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
-import android.widget.TextView;
 
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-
-import org.w3c.dom.Text;
 
 import java.util.Date;
 
@@ -59,9 +56,9 @@ public class TelaReclamacao extends AppCompatActivity {
     }
 
     private void writeNewReclamacao(String estacao, String nome, Date data, String descricao) {
-        Reclamacao reclamacao = new Reclamacao(estacao, nome, data, descricao);
+        //Report report = new Report(estacao, nome, data, descricao);
         mDatabase = FirebaseDatabase.getInstance().getReference();
 
-        mDatabase.child("reclamacoes").push().setValue(reclamacao);
+        //mDatabase.child("reclamacoes").push().setValue(report);
     }
 }
