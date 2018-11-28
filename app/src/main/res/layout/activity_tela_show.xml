@@ -4,13 +4,114 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".TelaShow">
+    tools:context=".TelaShow"
+    tools:layout_editor_absoluteY="25dp">
 
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
+
+    <Button
+        android:id="@+id/btnAssedioShow"
+        android:layout_width="0dp"
         android:layout_height="0dp"
-        android:text="TextView"
-        tools:layout_editor_absoluteX="150dp"
-        tools:layout_editor_absoluteY="173dp" />
+        android:layout_marginStart="17dp"
+        android:layout_marginEnd="11dp"
+        android:layout_marginBottom="326dp"
+        android:background="@drawable/sexual_harassment"
+        android:gravity="left|top"
+        android:textAlignment="gravity"
+        android:textColor="@color/red"
+        android:textSize="40dp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/btnLimpezaShow"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnLentidaoShow" />
+
+    <Button
+        android:id="@+id/btnLimpezaShow"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginBottom="326dp"
+        android:background="@drawable/clean"
+        android:gravity="left|top"
+        android:textAlignment="gravity"
+        android:textColor="@color/red"
+        android:textSize="40dp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/btnSegurancaShow"
+        app:layout_constraintStart_toEndOf="@+id/btnAssedioShow"
+        app:layout_constraintTop_toBottomOf="@+id/btnArCondicionadoShow" />
+
+    <Button
+        android:id="@+id/btnSegurancaShow"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginEnd="26dp"
+        android:layout_marginBottom="326dp"
+        android:background="@drawable/shield"
+        android:gravity="left|top"
+        android:textAlignment="gravity"
+        android:textColor="@color/red"
+        android:textSize="40dp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/btnLimpezaShow"
+        app:layout_constraintTop_toBottomOf="@+id/btnLotacaoShow" />
+
+    <Button
+        android:id="@+id/btnLotacaoShow"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="27dp"
+        android:layout_marginEnd="26dp"
+        android:layout_marginBottom="16dp"
+        android:background="@drawable/group"
+        android:gravity="left|top"
+        android:textAlignment="gravity"
+        android:textColor="@color/red"
+        android:textSize="40dp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/btnSegurancaShow"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/btnArCondicionadoShow"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/btnLentidaoShow"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="17dp"
+        android:layout_marginTop="27dp"
+        android:layout_marginEnd="11dp"
+        android:layout_marginBottom="16dp"
+        android:background="@drawable/slow"
+        android:gravity="left|top"
+        android:textAlignment="gravity"
+        android:textColor="@color/red"
+        android:textSize="40dp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/btnAssedioShow"
+        app:layout_constraintEnd_toStartOf="@+id/btnArCondicionadoShow"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/btnArCondicionadoShow"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="27dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginBottom="16dp"
+        android:background="@drawable/ac"
+        android:gravity="left|top"
+        android:textAlignment="gravity"
+        android:textColor="@color/red"
+        android:textSize="40dp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/btnLimpezaShow"
+        app:layout_constraintEnd_toStartOf="@+id/btnLotacaoShow"
+        app:layout_constraintStart_toEndOf="@+id/btnLentidaoShow"
+        app:layout_constraintTop_toTopOf="parent" />
 </android.support.constraint.ConstraintLayout>

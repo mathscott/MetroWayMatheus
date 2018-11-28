@@ -11,15 +11,6 @@ public class Report {
     private boolean arCondicionado;
     private boolean seguranca;
 
-    public String getEstacao() {
-        return estacao;
-    }
-
-    public void setEstacao(String estacao) {
-        this.estacao = estacao;
-    }
-
-    private String estacao;
 
     public boolean isAssedio() {
         return assedio;

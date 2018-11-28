@@ -29,7 +29,6 @@ public class TelaReport extends AppCompatActivity {
         } else {
             Log.d("ts", "entrou");
         }
-
         final CheckableImageButton btnLentidao = findViewById(R.id.botaoLentidao);
         final CheckableImageButton btnLotacao = findViewById(R.id.botaoLotacao);
         final CheckableImageButton btnAssedio = findViewById(R.id.botaoAssedio);
@@ -43,7 +42,7 @@ public class TelaReport extends AppCompatActivity {
         botaoOk.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                writeNewEnvio(btnLentidao.isChecked(), btnLotacao.isChecked(), btnAssedio.isChecked(), btnLimpeza.isChecked(), btnSeguranca.isChecked(), btnArCondicionado.isChecked());
+                writeNewEnvio(btnLentidao.isChecked(), btnLotacao.isChecked(), btnAssedio.isChecked(), btnLimpeza.isChecked(), btnSeguranca.isChecked(), btnArCondicionado.isChecked(), estacao);
                 btnLentidao.setSelected(false);
             }
         });
@@ -51,7 +50,7 @@ public class TelaReport extends AppCompatActivity {
 
     }
 
-    private void writeNewEnvio(boolean lentidao, boolean lotacao, boolean assedio, boolean limpeza, boolean seguranca, boolean arCondicionado) {
+    private void writeNewEnvio(boolean lentidao, boolean lotacao, boolean assedio, boolean limpeza, boolean seguranca, boolean arCondicionado, String estacao) {
         Report report = new Report();
         report.setAssedio(assedio);
         report.setLentidao(lentidao);
@@ -59,11 +58,10 @@ public class TelaReport extends AppCompatActivity {
         report.setArCondicionado(arCondicionado);
         report.setLimpeza(limpeza);
         report.setSeguranca(seguranca);
-        report.setEstacao(estacao);
         mDatabase = FirebaseDatabase.getInstance().getReference();
 
         //mDatabase.child(estacao).push().setValue(report);
-        DatabaseReference estacaoRef = mDatabase.child("estacao").push();
+        DatabaseReference estacaoRef = mDatabase.child(estacao).push();
         estacaoRef.setValue(report);
 
 

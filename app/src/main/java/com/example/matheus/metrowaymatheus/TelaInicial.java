@@ -23,6 +23,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.support.v4.content.ContextCompat;
 import android.Manifest;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -67,7 +68,6 @@ public class TelaInicial extends AppCompatActivity
     }
 
     Dialog myDialog;
-
 
 
     @Override
@@ -216,6 +216,7 @@ public class TelaInicial extends AppCompatActivity
             map.setOnMyLocationClickListener(this);
         }
 
+        Button btnReport = (Button) findViewById(R.id.btnReport);
 
     }
 
@@ -234,7 +235,7 @@ public class TelaInicial extends AppCompatActivity
                                 for (int i = 0; i < marcadoresEstacoes.size(); i ++) {
                                     if (item.getTitle().equals(marcadoresEstacoes.get(i).getTitle())) {
                                         marcadoresEstacoes.get(i).showInfoWindow();
-                                        CameraUpdate yourLocation = CameraUpdateFactory.newLatLngZoom(marcadoresEstacoes.get(i).getPosition(), 11.0f);
+                                        CameraUpdate yourLocation = CameraUpdateFactory.newLatLngZoom(marcadoresEstacoes.get(i).getPosition(), 13.0f);
                                         map.animateCamera(yourLocation);
 
                                     }
@@ -285,7 +286,6 @@ public class TelaInicial extends AppCompatActivity
 //        String estacao1 = "linhaazul";
 //        int imageResource = getResources().getIdentifier("@drawable/"+estacao1, null, this.getPackageName());
 //        imagem.setImageResource(imageResource);
-        InfoWindowData info = new InfoWindowData();
 //        ImageView imagem = findViewById(R.id.imageView4);
         String[] estacoesECoordenadas = linha.split("\n");
         MarkerOptions markerOptions = new MarkerOptions();
@@ -300,13 +300,10 @@ public class TelaInicial extends AppCompatActivity
                 markerOptions.icon(BitmapDescriptorFactory.fromResource(R.drawable.baseline_train_black_18dp));
 //                map.addMarker(markerOptions);
 
-                CustomInfoWindowGoogleMap customInfoWindow = new CustomInfoWindowGoogleMap(this);
-                map.setInfoWindowAdapter(customInfoWindow);
 
                 Marker m = map.addMarker(markerOptions);
 
                   //imagem.setImageResource(R.drawable.turtle);
-                m.setTag(info);
                 map.setOnMarkerClickListener(this);
                 //map.setOnInfoWindowClickListener(this);
                 marcadoresEstacoes.add(m);
@@ -331,6 +328,18 @@ public class TelaInicial extends AppCompatActivity
         CaixaDialogo exampleDialog = new CaixaDialogo();
         exampleDialog.setNome(nome);
         exampleDialog.show(getSupportFragmentManager(), "example dialog");
+        exampleDialog.setMarker(marker);
+
+
+//        btnReport.setText("aa");
+//        btnReport.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+////                Intent intent = new Intent(v.getContext(), TelaReport.class);
+////                startActivity(intent);
+//
+//            }
+//        });
     }
 
     public void abrirTelaReport (View view) {
