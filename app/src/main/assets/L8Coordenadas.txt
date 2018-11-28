@@ -1,0 +1,23 @@
+-23.5305166,-46.9838229,Amador Bueno
+-23.3229,46.5734,Cimenrita
+-23.5449544,-46.9476897,Santa Rita
+-23.545556,-46.9352752,Itapevi
+-23.5354135,-46.9282267,Engenheiro Cardoso
+-23.5292319,-46.9159902,Sagrado Coração
+-23.5259046,-46.8946884,Jandira
+-23.5234955,-46.8935269,Jardim Silveira
+-23.5036235,-46.91938055,Jardim Belval
+-23.5126077,-46.875075,Barueri
+-23.5168953,-46.858691,Antônio João
+-23.516588,-46.847983,Santa Terezinha
+-23.518309,-46.835972,Carapicuíba
+-23.523779,-46.737562,General Miguel Costa
+-23.522785,-46.807112,Quitaúna
+-23.525788,-46.796184,Comandante Sampaio
+-23.527797,-46.775874,Osasco
+-23.530893,-46.771181,Presidente Altino
+-23.523668,-46.737479,Imperatriz Leopoldina
+-23.5191945,-46.7216699,Domingos de Moraes
+-23.5192588,-46.7256274,Lapa
+-23.5254579,-46.6696101,Palmeiras - Barra Funda
+-23.5341537,-46.6420459,Júlio Prestes

@@ -1,0 +1,3 @@
+-23.432964,-46.4948581,Aeroporto Guarulhos
+-23.4474296,-46.4959073,Guarulhos Cecap
+-23.498063,-46.5219483,Engenheiro Goulart

@@ -1,0 +1,13 @@
+-23.5253423,-46.3354629,Calmon Viana
+-23.4998349,-46.3412707,Aracaré
+-23.4855911,-46.350688,Itaquaquecetuba
+-23.4792808,-46.3694749,Eng° Manoel Feio
+-23.4849192,-46.3877685,Jardim Romano
+-23.4939664,-46.404268,Itaim Paulista
+-23.4927169,-46.4232823,Jardim Helena - Vila Mara
+-23.4921605,-46.448743,São Miguel Paulista
+-23.4850432,-46.4845589,Comendador Ermelino
+-23.4855118,-46.5034823,USP - Leste
+-23.498063,-46.5219483,Engenheiro Goulart
+-23.5402793,-46.5787774,Tatuapé
+-23.5423075,-46.6242516,Brás
