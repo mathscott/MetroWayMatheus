@@ -28,6 +28,7 @@ public class TelaShow extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tela_show);
+        
         final FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference ref = database.getReference();
         btnLimpeza = findViewById(R.id.btnLimpezaShow);

@@ -24,7 +24,7 @@ public class TelaReport extends AppCompatActivity {
         setContentView(R.layout.activity_tela_report);
 
 
-
+        getSupportActionBar().setTitle("MetroWay");
         Bundle extras = getIntent().getExtras();
         if(extras !=null) {
             estacao = extras.getString("estacao");
