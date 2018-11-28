@@ -1,5 +1,6 @@
 package com.example.matheus.metrowaymatheus;
 
+import android.app.ActionBar;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
@@ -88,6 +89,7 @@ public class TelaInicial extends AppCompatActivity
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
+        getSupportActionBar().setTitle("MetroWay");
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
@@ -234,9 +236,9 @@ public class TelaInicial extends AppCompatActivity
                                                    Searchable item, int position) {
                                 for (int i = 0; i < marcadoresEstacoes.size(); i ++) {
                                     if (item.getTitle().equals(marcadoresEstacoes.get(i).getTitle())) {
-                                        marcadoresEstacoes.get(i).showInfoWindow();
-                                        CameraUpdate yourLocation = CameraUpdateFactory.newLatLngZoom(marcadoresEstacoes.get(i).getPosition(), 13.0f);
-                                        map.animateCamera(yourLocation);
+                                        String nome = marcadoresEstacoes.get(i).getTitle().toString();
+                                        openDialog(nome, marcadoresEstacoes.get(i));
+                                        map.moveCamera(CameraUpdateFactory.newLatLng(marcadoresEstacoes.get(i).getPosition()));
 
                                     }
                                 }

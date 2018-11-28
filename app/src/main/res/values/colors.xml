@@ -10,5 +10,7 @@
     <color name="lila">#990099</color>
     <color name="ruby">#e0115f</color>
     <color name="diamond">#B77B82</color>
+    <color name="purple">#943cc6</color>
+    <color name="purpleDark">#68298c</color>
 
 </resources>

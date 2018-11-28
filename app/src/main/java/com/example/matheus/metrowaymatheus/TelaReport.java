@@ -1,5 +1,7 @@
 package com.example.matheus.metrowaymatheus;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -42,8 +44,20 @@ public class TelaReport extends AppCompatActivity {
         botaoOk.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                AlertDialog alertDialog = new AlertDialog.Builder(TelaReport.this).create();
+                alertDialog.setTitle("Sucesso");
+                alertDialog.setMessage("Relatório enviado com sucesso");
+                alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.dismiss();
+                                finish();
+                            }
+                        });
+                alertDialog.show();
                 writeNewEnvio(btnLentidao.isChecked(), btnLotacao.isChecked(), btnAssedio.isChecked(), btnLimpeza.isChecked(), btnSeguranca.isChecked(), btnArCondicionado.isChecked(), estacao);
                 btnLentidao.setSelected(false);
+
             }
         });
 
