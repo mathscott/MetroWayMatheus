@@ -143,12 +143,7 @@ public class TelaInicial extends AppCompatActivity
         Toast.makeText(this, "Current location:\n" + location, Toast.LENGTH_LONG).show();
     }
 
-    public void launchSecondActivity(View view) {
-        Intent intent = new Intent(this, TelaSelecao.class);
-        startActivity(intent);
 
-
-    }
 
     @Override
     public boolean onMyLocationButtonClick() {
@@ -188,10 +183,12 @@ public class TelaInicial extends AppCompatActivity
         marcaEstacao(reader.readAllLine("L4Coordenadas.txt", this), Color.YELLOW);
         marcaEstacao(reader.readAllLine("L5Coordenadas.txt", this), Color.parseColor("purple"));
         marcaEstacao(reader.readAllLine("L7Coordenadas.txt", this), Color.rgb(192, 1, 135));
-        marcaEstacao(reader.readAllLine("L8Coordenadas(Incompleto).txt ", this), Color.rgb(192, 1, 135));
-
-        //procuraEstacao();
-
+        marcaEstacao(reader.readAllLine("L8Coordenadas.txt ", this), Color.GRAY);
+        marcaEstacao(reader.readAllLine("L9Coordenadas.txt", this), Color.rgb(1, 254, 205));
+        marcaEstacao(reader.readAllLine("L10Coordenadas.txt", this), Color.rgb(1, 101, 176));
+        marcaEstacao(reader.readAllLine("L11Coordenadas.txt", this), Color.rgb(255, 101, 0));
+        marcaEstacao(reader.readAllLine("L12Coordenadas.txt", this), Color.rgb(0, 1, 100));
+        
         desenhaLinha(reader.readAll("L1Azul.txt", this), Color.BLUE);
         desenhaLinha(reader.readAll("L2Verde.txt", this), Color.GREEN);
         desenhaLinha(reader.readAll("L3Vermelha.txt", this), Color.RED);
@@ -218,7 +215,6 @@ public class TelaInicial extends AppCompatActivity
             map.setOnMyLocationClickListener(this);
         }
 
-        Button btnReport = (Button) findViewById(R.id.btnReport);
 
     }
 
@@ -236,9 +232,10 @@ public class TelaInicial extends AppCompatActivity
                                                    Searchable item, int position) {
                                 for (int i = 0; i < marcadoresEstacoes.size(); i ++) {
                                     if (item.getTitle().equals(marcadoresEstacoes.get(i).getTitle())) {
+                                        map.moveCamera(CameraUpdateFactory.newLatLng(marcadoresEstacoes.get(i).getPosition()));
                                         String nome = marcadoresEstacoes.get(i).getTitle().toString();
                                         openDialog(nome, marcadoresEstacoes.get(i));
-                                        map.moveCamera(CameraUpdateFactory.newLatLng(marcadoresEstacoes.get(i).getPosition()));
+
 
                                     }
                                 }
@@ -274,21 +271,11 @@ public class TelaInicial extends AppCompatActivity
 
         estacoes[0] = "Selecione uma estação";
 
-
-////        estacoes = componentes.split("\n");
-//        Log.d("estacoes", Arrays.toString(estacoes));
-
-
     }
 
 
 
     public void marcaEstacao(String linha, int corEstacao){
-//        ImageView imagem = (ImageView) findViewById(R.id.pic);
-//        String estacao1 = "linhaazul";
-//        int imageResource = getResources().getIdentifier("@drawable/"+estacao1, null, this.getPackageName());
-//        imagem.setImageResource(imageResource);
-//        ImageView imagem = findViewById(R.id.imageView4);
         String[] estacoesECoordenadas = linha.split("\n");
         MarkerOptions markerOptions = new MarkerOptions();
         for(String estacaoECoordenada : estacoesECoordenadas){
@@ -300,21 +287,11 @@ public class TelaInicial extends AppCompatActivity
                 markerOptions.title(estacaoCoordenadaSeparados[2]);
                 hashtable.put(estacaoCoordenadaSeparados[2], corEstacao);
                 markerOptions.icon(BitmapDescriptorFactory.fromResource(R.drawable.baseline_train_black_18dp));
-//                map.addMarker(markerOptions);
-
-
                 Marker m = map.addMarker(markerOptions);
-
-                  //imagem.setImageResource(R.drawable.turtle);
                 map.setOnMarkerClickListener(this);
-                //map.setOnInfoWindowClickListener(this);
                 marcadoresEstacoes.add(m);
             }
         }
-
-//        for (int i = 0; i < marcadoresEstacoes.size(); i ++) {
-//            Log.d("teste", marcadoresEstacoes.get(i).getTitle()+ i);
-//        }
 
 
     }
@@ -333,15 +310,6 @@ public class TelaInicial extends AppCompatActivity
         exampleDialog.setMarker(marker);
 
 
-//        btnReport.setText("aa");
-//        btnReport.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-////                Intent intent = new Intent(v.getContext(), TelaReport.class);
-////                startActivity(intent);
-//
-//            }
-//        });
     }
 
     public void abrirTelaReport (View view) {
@@ -399,13 +367,9 @@ public class TelaInicial extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_twitter) {
-            Intent intent = new Intent(this, TwitterTimeline.class);
-            startActivity(intent);
+
         } else if (id == R.id.nav_sobre) {
             Intent intent = new Intent(this, TelaSobre.class);
-            startActivity(intent);
-        } else if (id == R.id.nav_telaselecaostatus) {
-            Intent intent = new Intent(this, TelaSelecaoEstacaoStatus.class);
             startActivity(intent);
         } else if (id == R.id.nav_manage) {
 

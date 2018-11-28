@@ -4,4 +4,6 @@
     xmlns:sample="http://schemas.android.com/apk/res-auto">
     <item android:drawable="@color/green"
         sample:is_checked="true" />
+    
 </selector>
+

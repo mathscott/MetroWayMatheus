@@ -10,7 +10,7 @@
             android:title="Twitter" />
         <item
             android:id="@+id/nav_sobre"
-            android:icon="@drawable/ic_menu_gallery"
+            android:icon="@drawable/baseline_info_black_18dp"
             android:title="Sobre" />
         <item
             android:id="@+id/nav_telaselecaostatus"

@@ -42,11 +42,7 @@ public class CheckableImageButton extends android.support.v7.widget.AppCompatIma
 
     @Override
     public boolean performClick() {
-        if (mPersonality == PERSONALITY_RADIO_BUTTON) {
-            setChecked(true);
-        } else if (mPersonality == PERSONALITY_CHECK_BOX) {
-            toggle();
-        }
+        toggle();
         return super.performClick();
     }
 
