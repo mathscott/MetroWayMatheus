@@ -2,6 +2,7 @@ package com.example.matheus.metrowaymatheus;
 
 import android.os.Bundle;
 import android.app.Activity;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.widget.Button;
 import android.widget.TextView;
@@ -14,7 +15,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import static android.support.constraint.Constraints.TAG;
 
-public class TelaShow extends Activity {
+public class TelaShow extends AppCompatActivity {
 
     private String estacaoString;
     Button btnLimpeza;
@@ -28,7 +29,7 @@ public class TelaShow extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tela_show);
-        
+        getSupportActionBar().setTitle("MetroWay");
         final FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference ref = database.getReference();
         btnLimpeza = findViewById(R.id.btnLimpezaShow);
